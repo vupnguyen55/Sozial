@@ -16,7 +16,10 @@ app.get('/users', function(req, res) {
   res.sendFile(path.join(__dirname, './index.html'));
 });
 
-app.post('/', function(req, res) {
+app.post('/api/users', function(req, res) {
+ tableName.create(req.body).then(function(){
+  res.json(data);
+ });
   console.log(req.body);
   res.end();
 });
