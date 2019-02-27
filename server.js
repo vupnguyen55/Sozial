@@ -14,7 +14,6 @@ const db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-require('./routes/api-routes.js')(app);
 /*
 app.get('/users', function(req, res) {
   res.sendFile(path.join(__dirname, './index.html'));
