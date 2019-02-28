@@ -4,8 +4,8 @@ module.exports = function(connection, Sequelize){
   {
    full_name: Sequelize.STRING,
    password: Sequelize.STRING,
-   email: Sequelize.INTEGER,
-   picture: Sequelize.INTEGER,
+   email: Sequelize.STRING,
+   picture: Sequelize.STRING
 
   }
  );
