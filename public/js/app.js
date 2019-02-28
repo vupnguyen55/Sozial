@@ -26,8 +26,9 @@ const registerUser = function (event){
   
     $.post('/api/session',{email: username, password: password})
     .then(function(data){
-      if(data[0].id){
-        sessionStorage.setItem('token', data[0].id)
+      console.log(data);
+      if(data.id){
+        sessionStorage.setItem('token', data.id)
         window.location.href = "post.html";
       }
     })
