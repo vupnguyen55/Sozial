@@ -24,6 +24,8 @@ app.post('/', function(req, res) {
   res.end();
 });
 */
+require('./routes/api-routes')(app);
+// require('./routes/html-routes')(app);
 
 // Starts our server.
 db.sequelize.sync().then(function(){
