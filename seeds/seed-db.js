@@ -502,9 +502,44 @@ db.sequelize.sync().then(function() {
     "password": "DCAyXWrQ",
     "email": "rsanders2r@tmall.com",
     "picture": "http://dummyimage.com/173x193.jpg/ff4444/ffffff"
-  }]).then(function(){
-    console.log('Data successfully added!');
-    db.sequelize.close();
+  }]).then(function(response){
+    // db.sequelize.close();
+    db.Post.bulkCreate([{
+      title: "This is our first post",
+      body: "Yay it works!",
+      picture: "img",
+      UserId: 2
+    },
+    {
+      title: "This is our first post 2",
+      body: "Yay it works!",
+      picture: "img",
+      UserId: 3
+    },
+    {
+      title: "This is our first post 3",
+      body: "Yay it works!",
+      picture: "img",
+      UserId: 4
+    },
+    {
+      title: "This is our first post 4",
+      body: "Yay it works!",
+      picture: "img",
+      UserId: 5
+    },
+    {
+      title: "This is our first post 5",
+      body: "Yay it works!",
+      picture: "img",
+      UserId: 4
+      
+    }
+    ]).then(function (){
+      console.log('Data successfully added!');
+    }).catch(function (error){
+      console.log('Error', error)
+    });
   }).catch(function(error) {
     console.log('Error', error)
   });
