@@ -19,19 +19,34 @@ const registerUser = function (event){
    * Login Users
    */
   
+
+  let usersArray = [];
+
   const loginUser = function (event){ 
     event.preventDefault();
+
     const username = $('#login-username').val().trim();
     const password = $('#login-password').val().trim();
-  
-    $.post('/api/session',{email: username, password: password})
-    .then(function(data){
+
+    $.get('/api/users').then(function(data) {
       console.log(data);
-      if(data.id){
-        sessionStorage.setItem('token', data.id)
-        window.location.href = "post.html";
+      for(i = 0; i < data.length; i++) {
+        usersArray.push(data[i])
       }
-    })
+    }).then(function(){
+    for(i = 0;i < usersArray.length;i++) {
+      if(username === usersArray[i].email && password === usersArray[i].password) {
+        $.post('/api/session',{email: username, password: password})
+        .then(function(data){
+            sessionStorage.setItem('token', data.id)
+            window.location.href = "post.html";
+            return
+      })
+    }else{
+     console.log("Incorrect Account and Password")
+    }
   }
+ })
+}
   
   $('#login-btn').on('click', loginUser);
