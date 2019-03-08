@@ -7,15 +7,17 @@ const db = require("./models");
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static('client/build'));
+}
 
 require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
 // Starts our server.
-db.sequelize.sync().then(function(){
-app.listen(PORT, function() {
-  console.log("Server listening on: http://localhost:" + PORT);
-});
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    console.log("Server listening on: http://localhost:" + PORT);
+  });
 });
