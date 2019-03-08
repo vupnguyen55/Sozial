@@ -1,8 +1,10 @@
 const db = require('../models');
 
 module.exports = function (app) {
-
+  // Login user
   app.post('/api/session', function (req, res) {
+    // console.log('req body: ', req.body);
+    // console.log(req.body.email);
     db.User.findOne({
       where: {
         email: req.body.email,
@@ -10,6 +12,7 @@ module.exports = function (app) {
       }
     })
       .then(function (data) {
+        // console.log('inside api',data.password);
         res.json(data);
       })
       .catch(function (err) {
@@ -50,6 +53,16 @@ module.exports = function (app) {
       });
   });
 
+  app.get('/api/posts', function (req, res) {
+    db.Post.findAll({})
+      .then(function (data) {
+        res.json(data);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
+  });
+
   app.post('/api/posts', function (req, res) {
     db.Post.create(req.body)
       .then(function (data) {
@@ -60,7 +73,7 @@ module.exports = function (app) {
       });
   });
 
-  
+
 
   /*
   
