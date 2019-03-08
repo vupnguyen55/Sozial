@@ -52,13 +52,15 @@ module.exports = function (app) {
 
   app.post('/api/posts', function (req, res) {
     db.Post.create(req.body)
-    .then(function (data) {
-      res.json(data);
-    })
-    .catch(function (err) {
-      res.json(err);
-    });
+      .then(function (data) {
+        res.json(data);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
   });
+
+  
 
   /*
   
