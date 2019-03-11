@@ -123,9 +123,6 @@ class App extends Component {
                   allPosts={this.state.postsList}
                 />
               </div>
-              <div className="col-7">
-                <Home allPosts={this.state.postsList} />
-              </div>
               <div className="col" />
             </div>
           </div>
