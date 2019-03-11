@@ -3,7 +3,7 @@ import React from 'react';
 const Form = (props) => (
     <form className="col">
         <div className="input-group mb-3">
-            <input type="text" className="form-control"
+            <input type="text" className="form-control" placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.handleChange} />
             <div className="input-group-append">
