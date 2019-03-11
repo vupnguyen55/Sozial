@@ -28,6 +28,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
+  
 
   app.get('/api/user/:id', function (req, res) {
     db.User.findOne({

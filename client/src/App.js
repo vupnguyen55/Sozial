@@ -21,6 +21,10 @@ class App extends Component {
     input: "",
     picture: ""
   };
+  }
+
+  handleReverse = (e) =>
+  e.preventDefault();
 
   // email password input
   handleLogin = e => {
@@ -52,11 +56,12 @@ class App extends Component {
   };
 
   getPosts = () => {
-    $.get("/api/posts").then(result => {
-      console.log("post data:", result.data);
-      this.setState({ postsList: result.data });
-    });
-  };
+    $.get('/api/posts')
+      .then((result) => {
+        console.log('post data:', result.data);
+        this.setState({ postsList: result.data.reverse() });
+      })
+  }
 
   componentDidMount() {
     this.getPosts();
@@ -111,6 +116,17 @@ class App extends Component {
                 <Profile
                   fullname={this.state.fullname}
                   picture={this.state.picture}
+            <div className='row'>
+              <div className='col'>
+                <Profile 
+                  fullname={this.state.fullname}
+                   picture={this.state.picture}
+                    />
+              </div>
+              <div className='col-7'>
+                <Home
+                  allPosts={this.state.postsList}
+                  getNameById={this.getNameById}
                 />
               </div>
               <div className="col-7">
@@ -119,6 +135,7 @@ class App extends Component {
               <div className="col" />
             </div>
           </div>
+
         ) : (
           <div className="container">
             <Login
