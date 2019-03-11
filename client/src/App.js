@@ -7,6 +7,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
+import Friend from './components/Friend';
 
 class App extends Component {
   state = {
@@ -16,7 +17,9 @@ class App extends Component {
     fullname: '',
     isLogin: false,
     isInvalid: false,
+    isSearch: false,
     postsList: [],
+    friendsname: [],
     body: '',
     input: ''
   }
@@ -49,9 +52,8 @@ class App extends Component {
   getPosts = () => {
     $.get('/api/posts')
       .then((result) => {
-        console.log('post data:', result.data);
+        // console.log('post data:', result.data);
         this.setState({ postsList: result.data });
-
       });
   }
 
@@ -67,7 +69,7 @@ class App extends Component {
     e.preventDefault();
     $.post('/api/post', { UserId: this.state.userid, body: this.state.body })
       .then((data) => {
-        console.log('inside App.js then:', data);
+        // console.log('inside App.js then:', data);
         this.getPosts();
       });
   }
@@ -78,7 +80,21 @@ class App extends Component {
   // search button
   handleSearchClick = (e) => {
     e.preventDefault();
-    console.log('Search friend');
+    $.get('/api/search/' + this.state.input)
+      .then((res) => {
+        console.log('res from search: ', res.data);
+        this.setState({ isSearch: true, friendsname: res.data });
+      });
+  }
+  // add friend button
+  handleAddClick = (e) => {
+    e.preventDefault();
+    console.log('add button id value', e.target.value);
+    $.post('/api/friend', {user_id: this.state.userid, friend_id: e.target.value})
+    .then((data) => {
+      console.log('inside App.js then:', data);
+
+    });
   }
 
   render() {
@@ -94,19 +110,28 @@ class App extends Component {
                 value={this.state.body}
                 handleChange={this.handlePostChange}
                 handleClick={this.handlePostClick}
+                placeholder={"What's in your mind..."}
               />
               <Form
                 btnName={"Search"}
                 value={this.state.input}
                 handleChange={this.handleSearchChange}
                 handleClick={this.handleSearchClick}
+                placeholder={"Search friends by name..."}
               />
             </div>
             <div className='row'>
               <div className='col'>
-                <Profile fullname={this.state.fullname}/>
+                <Profile fullname={this.state.fullname} />
               </div>
               <div className='col-7'>
+                {this.state.friendsname ? (
+                  <Friend 
+                    friendsname={this.state.friendsname}
+                    handleAddClick={this.handleAddClick}
+                  />
+                ) : ('No Friends')}
+               
                 <Home
                   allPosts={this.state.postsList}
                 />
