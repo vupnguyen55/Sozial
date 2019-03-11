@@ -18,8 +18,12 @@ class App extends Component {
     isInvalid: false,
     postsList: [],
     body: '',
-    input: ''
+    input: '',
+    DynamicName: ''
   }
+
+  handleReverse = (e) =>
+  e.preventDefault();
 
   // email password input
   handleLogin = (e) => {
@@ -50,9 +54,8 @@ class App extends Component {
     $.get('/api/posts')
       .then((result) => {
         console.log('post data:', result.data);
-        this.setState({ postsList: result.data });
-
-      });
+        this.setState({ postsList: result.data.reverse() });
+      })
   }
 
   componentDidMount() {
@@ -109,11 +112,14 @@ class App extends Component {
               <div className='col-7'>
                 <Home
                   allPosts={this.state.postsList}
+                  getNameById={this.getNameById}
+                  DynamicName={this.state.DynamicName}
                 />
               </div>
               <div className='col'></div>
             </div>
           </div>
+
         ) : (
             <div className='container'>
               <Login
