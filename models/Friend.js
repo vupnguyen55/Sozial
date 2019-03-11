@@ -8,6 +8,7 @@ module.exports = function (connection, Sequelize) {
         }
     );
 
+    
    
     return Friend;
 }

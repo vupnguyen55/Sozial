@@ -16,6 +16,11 @@ module.exports = function (connection, Sequelize) {
         })
     };
 
+    // User.associate = function (models) {
+    //     User.hasMany(models.Friend, {
+    //         onDelete: 'cascade'
+    //     })
+    // };
 
 
     return User;
