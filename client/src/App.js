@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import * as $ from 'axios';
 import Login from './components/Login';
@@ -11,74 +12,83 @@ import Friend from './components/Friend';
 
 class App extends Component {
   state = {
-    email: '',
-    password: '',
-    userid: '',
-    fullname: '',
+    email: "",
+    password: "",
+    userid: "",
+    fullname: "",
     isLogin: false,
     isInvalid: false,
     isSearch: false,
     postsList: [],
+
     friendsname: [],
     body: '',
-    input: ''
-  }
+    input: '',
+    picture: ''
+  };
+
 
   // email password input
-  handleLogin = (e) => {
+  handleLogin = e => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
   // login button
-  handleLoginButton = (e) => {
+  handleLoginButton = e => {
     e.preventDefault();
     const loginData = {
       email: this.state.email,
       password: this.state.password
-    }
-    $.post('/api/session', loginData)
-      .then((res) => {
-        // console.log('res user data: ', res.data);
-        if (res.data) {
-          this.setState({ isLogin: true, userid: res.data.id, fullname: res.data.full_name });
-        } else {
-          this.setState({ isInvalid: true });
-        }
-      });
-  }
+    };
+    $.post("/api/session", loginData).then(res => {
+      // console.log('res user data: ', res.data);
+      if (res.data) {
+        this.setState({
+          isLogin: true,
+          userid: res.data.id,
+          fullname: res.data.full_name,
+          picture: res.data.picture
+        });
+      } else {
+        this.setState({ isInvalid: true });
+      }
+    });
+  };
 
   getPosts = () => {
     $.get('/api/posts')
       .then((result) => {
-        // console.log('post data:', result.data);
-        this.setState({ postsList: result.data });
-      });
+        console.log('post data:', result.data);
+        this.setState({ postsList: result.data.reverse() });
+      })
   }
 
   componentDidMount() {
     this.getPosts();
   }
   // post input
-  handlePostChange = (e) => {
+  handlePostChange = e => {
     this.setState({ body: e.target.value });
-  }
+  };
   // post button
-  handlePostClick = (e) => {
+  handlePostClick = e => {
     e.preventDefault();
-    $.post('/api/post', { UserId: this.state.userid, body: this.state.body })
-      .then((data) => {
-        // console.log('inside App.js then:', data);
-        this.getPosts();
-      });
-  }
+    $.post("/api/post", {
+      UserId: this.state.userid,
+      body: this.state.body
+    }).then(data => {
+      this.getPosts();
+    });
+  };
+
   // search input
-  handleSearchChange = (e) => {
+  handleSearchChange = e => {
     this.setState({ input: e.target.value });
-  }
+  };
   // search button
-  handleSearchClick = (e) => {
+  handleSearchClick = e => {
     e.preventDefault();
     $.get('/api/search/' + this.state.input)
       .then((res) => {
@@ -97,14 +107,14 @@ class App extends Component {
     });
   }
 
-  render() {
 
+  render() {
     return (
       <div className="App">
         <Nav />
         {this.state.isLogin ? (
-          <div className='container'>
-            <div className='row'>
+          <div className="container">
+            <div className="row">
               <Form
                 btnName={"Post"}
                 value={this.state.body}
@@ -122,7 +132,10 @@ class App extends Component {
             </div>
             <div className='row'>
               <div className='col'>
-                <Profile fullname={this.state.fullname} />
+                <Profile 
+                  fullname={this.state.fullname}
+                   picture={this.state.picture}
+                    />
               </div>
               <div className='col-7'>
                 {this.state.friendsname ? (
@@ -136,22 +149,25 @@ class App extends Component {
                   allPosts={this.state.postsList}
                 />
               </div>
-              <div className='col'></div>
+              <div className="col" />
             </div>
           </div>
+
         ) : (
-            <div className='container'>
-              <Login
-                handleLogin={this.handleLogin}
-                handleLoginButton={this.handleLoginButton}
-                email={this.state.email}
-                password={this.state.password}
-              />
-              {this.state.isInvalid ? (
-                <Alert message='Invalid email or password!' />
-              ) : (`Welcome!`)}
-            </div>
-          )}
+          <div className="container">
+            <Login
+              handleLogin={this.handleLogin}
+              handleLoginButton={this.handleLoginButton}
+              email={this.state.email}
+              password={this.state.password}
+            />
+            {this.state.isInvalid ? (
+              <Alert message="Invalid email or password!" />
+            ) : (
+              `Welcome!`
+            )}
+          </div>
+        )}
       </div>
     );
   }
