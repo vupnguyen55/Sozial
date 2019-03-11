@@ -21,7 +21,7 @@ class App extends Component {
     input: "",
     picture: ""
   };
-  }
+  
 
   handleReverse = (e) =>
   e.preventDefault();
@@ -111,11 +111,6 @@ class App extends Component {
                 handleClick={this.handleSearchClick}
               />
             </div>
-            <div className="row">
-              <div className="col">
-                <Profile
-                  fullname={this.state.fullname}
-                  picture={this.state.picture}
             <div className='row'>
               <div className='col'>
                 <Profile 
@@ -126,7 +121,6 @@ class App extends Component {
               <div className='col-7'>
                 <Home
                   allPosts={this.state.postsList}
-                  getNameById={this.getNameById}
                 />
               </div>
               <div className="col-7">
