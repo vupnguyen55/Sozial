@@ -3,7 +3,12 @@ const db = require('../models');
 module.exports = function (app) {
 
   app.post('/api/session', function (req, res) {
-    db.User.find(req.body)
+    db.User.findOne({
+      where: {
+        email: req.body.email,
+        password: req.body.password
+      }
+    })
       .then(function (data) {
         res.json(data);
       })
@@ -13,7 +18,7 @@ module.exports = function (app) {
   });
 
   app.get('/api/users', function (req, res) {
-    db.User.findAll().then(function (data) {
+    db.User.findAll({}).then(function (data) {
       console.log('anything');
       res.json(data);
     })
@@ -24,7 +29,9 @@ module.exports = function (app) {
   });
 
   app.get('/api/user/:id', function (req, res) {
-    db.User.find({ id: req.params.id })
+    db.User.findOne({
+      where: { id: req.params.id }
+    })
       .then(function (data) {
         res.json(data);
       })
@@ -43,11 +50,23 @@ module.exports = function (app) {
       });
   });
 
+  app.post('/api/posts', function (req, res) {
+    db.Post.create(req.body)
+      .then(function (data) {
+        res.json(data);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
+  });
+
+  
+
   /*
   
     app.post('/api/note', function (req, res) {
       const userId = req.body.userId;
-      const newEntitry = {
+      const newEntry = {
         body: req.body.body
       }
   

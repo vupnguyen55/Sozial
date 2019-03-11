@@ -30,8 +30,9 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "if-env": "^1.0.4",
-    "mongoose": "^5.4.17",
-    "axios": "^0.16.2"
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.42.0",
+    "sql": "^0.78.0",
+    "if-env": "^1.0.4"
   }
 }
