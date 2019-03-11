@@ -1,3 +1,16 @@
+body {
+  background-image: url("white-waves.png");
+}
+
+.form-rounded {
+  border-radius: 1rem;
+  }
+
+.profile-pic {
+  height: 90%;
+  width: 90%;
+}
+
 .App {
   text-align: center;
 }

@@ -1,10 +1,8 @@
 const db = require('../models');
 
 module.exports = function (app) {
-  // Login user
+  // called by handleLoginButton
   app.post('/api/session', function (req, res) {
-    // console.log('req body: ', req.body);
-    // console.log(req.body.email);
     db.User.findOne({
       where: {
         email: req.body.email,
@@ -22,11 +20,11 @@ module.exports = function (app) {
 
   app.get('/api/users', function (req, res) {
     db.User.findAll({}).then(function (data) {
-      console.log('anything');
+      // console.log('anything');
       res.json(data);
     })
       .catch(function (err) {
-        console.log('err');
+        // console.log('err');
         res.json(err);
       });
   });
@@ -52,7 +50,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
-
+  // called by getPosts
   app.get('/api/posts', function (req, res) {
     db.Post.findAll({})
       .then(function (data) {
@@ -64,7 +62,11 @@ module.exports = function (app) {
   });
 
   app.post('/api/posts', function (req, res) {
-    db.Post.create(req.body)
+    db.Post.findAll({
+      where: {
+        userid: req.body.userid
+      }
+    })
       .then(function (data) {
         res.json(data);
       })
@@ -73,7 +75,18 @@ module.exports = function (app) {
       });
   });
 
-
+  // called by handlePostClick
+  app.post('/api/post', function (req, res) {
+    // console.log('api req body: ', req.body);
+    db.Post.create(req.body)
+      .then(function (data) {
+        // console.log('inside api post, create successful:',data);
+        res.json(data);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
+  });
 
   /*
   
