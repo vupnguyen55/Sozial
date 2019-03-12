@@ -28,7 +28,6 @@ module.exports = function (app) {
     });
   });
   
-
   app.get('/api/user/:id', function (req, res) {
     db.User.findOne({
       where: { id: req.params.id }
@@ -40,7 +39,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
-
+  // called by handleRegisteClick
   app.post('/api/user', function (req, res) {
     db.User.create(req.body)
       .then(function (data) {
@@ -70,7 +69,6 @@ module.exports = function (app) {
   // called by handleSearchClick
   app.get('/api/search/:id', function (req, res) {
     let filter = req.params.id + '%';
-    console.log(typeof filter, filter);
     db.User.findAll({
       where: {
         full_name: {
@@ -78,7 +76,6 @@ module.exports = function (app) {
         }
       }
     }).then(function (data) {
-      console.log('inside api');
       res.json(data);
     })
       .catch(function (err) {
@@ -122,29 +119,13 @@ module.exports = function (app) {
       where: {
         friend_id: req.params.id
       }
-    })
-      .then(function (data) {
+    }).then(function (data) {
         res.json(data);
       })
       .catch(function (err) {
         res.json(err);
       });
   });
-
-  // app.post('/api/posts', function (req, res) {
-  //   db.Post.findAll({
-  //     where: {
-  //       userid: req.body.userid
-  //     }
-  //   })
-  //     .then(function (data) {
-  //       res.json(data);
-  //     })
-  //     .catch(function (err) {
-  //       res.json(err);
-  //     });
-  // });
-
   // called by handlePostClick
   app.post('/api/post', function (req, res) {
     // console.log('api req body: ', req.body);
@@ -162,7 +143,7 @@ module.exports = function (app) {
     console.log('req body',req.body);
     db.Friend.create(req.body)
       .then(function (data) {
-        // console.log('inside api post, create friend successful:',data);
+        console.log('inside api post, create friend successful:',data);
         res.json(data);
       })
       .catch(function (err) {
