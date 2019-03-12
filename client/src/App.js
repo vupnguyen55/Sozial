@@ -30,13 +30,6 @@ class App extends Component {
     regPss: ''
   };
 
-<<<<<<< HEAD
-  handleCreateUser = (e) => {
-    e.preventDefault();
-    $.post('/api/user', {[e.target.name]: e.target.regEmail, [e.target.name]: e.target.regPss})
-    .then((data) => {
-    })
-=======
   getPosts = () => {
     $.get('/api/posts')
       .then((result) => {
@@ -49,7 +42,6 @@ class App extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
->>>>>>> c65799cb9a5671c582c012748adcdabde9fd85fc
   }
 
   handleRegisterClick = e => {
