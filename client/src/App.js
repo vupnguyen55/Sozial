@@ -7,7 +7,6 @@ import './App.css';
 import Nav from './components/Nav';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
-// import Friend from './components/Friend';
 import HomeNav from './components/HomeNav'
 
 class App extends Component {
@@ -20,14 +19,40 @@ class App extends Component {
     isInvalid: false,
     isSearch: false,
     postsList: [],
-
+    idList: [],
     friendsname: [],
     body: '',
     input: '',
-    picture: ''
+    picture: '',
+    regEmail: '',
+    regPss: ''
   };
 
+  getPosts = () => {
+    $.get('/api/posts')
+      .then((result) => {
+        this.setState({ postsList: result.data.reverse() });
+      })
+  }
 
+  handleRegister = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleRegisterClick = e => {
+    e.preventDefault();
+    const newData = {
+      email: this.state.regEmail,
+      password: this.state.regPss
+    };
+    $.post('/api/user', newData)
+    .then((res) => {
+      console.log(res);
+    });
+  }
   // email password input
   handleLogin = e => {
     e.preventDefault();
@@ -43,7 +68,6 @@ class App extends Component {
       password: this.state.password
     };
     $.post("/api/session", loginData).then(res => {
-      // console.log('res user data: ', res.data);
       if (res.data) {
         this.setState({
           isLogin: true,
@@ -57,14 +81,7 @@ class App extends Component {
     });
   };
 
-  getPosts = () => {
-    $.get('/api/posts')
-      .then((result) => {
-        console.log('post data:', result.data);
-        this.setState({ postsList: result.data.reverse() });
-      })
-  }
-
+  
   componentDidMount() {
     this.getPosts();
   }
@@ -98,7 +115,7 @@ class App extends Component {
   // add friend button
   handleAddClick = (e) => {
     e.preventDefault();
-    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.target.value })
+    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.currentTarget.value })
       .then((data) => {
         alert('friend added successfully!');
       });
@@ -107,7 +124,7 @@ class App extends Component {
   clearSearch = (e) => {
     e.preventDefault();
     this.getPosts();
-    this.setState({ isSearch: false, input: ''});
+    this.setState({ isSearch: false, input: '' });
   }
 
   render() {
@@ -120,11 +137,11 @@ class App extends Component {
               value={this.state.input}
               handleChange={this.handleSearchChange}
               handleClick={this.handleSearchClick}
-              placeholder={"Search friends by name..."} 
+              placeholder={"Search friends by name..."}
               fullname={this.state.fullname}
               picture={this.state.picture}
               friendsname={this.state.friendsname}
-              handleAddClick={this.handleAddClick}/>
+              handleAddClick={this.handleAddClick} />
             <div className="container">
               <div className='row'>
                 <div className='col'>
@@ -132,11 +149,11 @@ class App extends Component {
                     fullname={this.state.fullname}
                     picture={this.state.picture}
                   />
-                  <p><a href="">Friends</a></p>
-                  <p><a href="">Groups</a></p>
-                  <p><a href="">History</a></p>
-                  <p><a href="">About</a></p>
-                  <p><a href="">Settings</a></p>
+                  <p><a href="#">Friends</a></p>
+                  <p><a href="#">Groups</a></p>
+                  <p><a href="#">History</a></p>
+                  <p><a href="#">About</a></p>
+                  <p><a href="#">Settings</a></p>
                 </div>
                 <div className='col-7'>
                   {this.state.friendsname ? (
@@ -169,6 +186,8 @@ class App extends Component {
                   handleLoginButton={this.handleLoginButton}
                   email={this.state.email}
                   password={this.state.password}
+                  handleRegister={this.handleRegister}
+                  handleRegisterClick={this.handleRegisterClick}
                 />
               </div>
               {this.state.isInvalid ? (

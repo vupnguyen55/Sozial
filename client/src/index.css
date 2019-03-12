@@ -141,7 +141,7 @@ code {
 }
 
 #homeNav {
-  background-color:#3C5A99;
+  background-color: darkgray;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -182,4 +182,12 @@ code {
 #fullname{
   font-size: 30px;
   font-weight: bold;
+}
+
+.card-body{
+  background-color: lightgray;
+}
+
+.text-info{
+  color: darkgray;
 }
