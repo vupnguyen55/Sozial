@@ -92,21 +92,23 @@ class App extends Component {
     e.preventDefault();
     $.get('/api/search/' + this.state.input)
       .then((res) => {
-        console.log('res from search: ', res.data);
         this.setState({ isSearch: true, friendsname: res.data });
       });
   }
   // add friend button
   handleAddClick = (e) => {
     e.preventDefault();
-    console.log('add button id value', e.target.value);
-    $.post('/api/friend', {user_id: this.state.userid, friend_id: e.target.value})
-    .then((data) => {
-      console.log('inside App.js then:', data);
-
-    });
+    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.target.value })
+      .then((data) => {
+        alert('friend added successfully!');
+      });
   }
-
+  // clear button
+  clearSearch = (e) => {
+    e.preventDefault();
+    this.getPosts();
+    this.setState({ isSearch: false, input: ''});
+  }
 
   render() {
     return (
@@ -132,42 +134,41 @@ class App extends Component {
             </div>
             <div className='row'>
               <div className='col'>
-                <Profile 
+                <Profile
                   fullname={this.state.fullname}
-                   picture={this.state.picture}
-                    />
+                  picture={this.state.picture}
+                />
               </div>
               <div className='col-7'>
-                {this.state.friendsname ? (
-                  <Friend 
-                    friendsname={this.state.friendsname}
-                    handleAddClick={this.handleAddClick}
-                  />
-                ) : ('No Friends')}
-               
-                <Home
-                  allPosts={this.state.postsList}
-                />
+                {!this.state.isSearch ? (
+                  <Home allPosts={this.state.postsList} />
+                ) : (
+                    <Friend
+                      friendsname={this.state.friendsname}
+                      handleAddClick={this.handleAddClick}
+                      clearSearch={this.clearSearch}
+                    />
+                  )}
               </div>
               <div className="col" />
             </div>
           </div>
 
         ) : (
-          <div className="container">
-            <Login
-              handleLogin={this.handleLogin}
-              handleLoginButton={this.handleLoginButton}
-              email={this.state.email}
-              password={this.state.password}
-            />
-            {this.state.isInvalid ? (
-              <Alert message="Invalid email or password!" />
-            ) : (
-              `Welcome!`
-            )}
-          </div>
-        )}
+            <div className="container">
+              <Login
+                handleLogin={this.handleLogin}
+                handleLoginButton={this.handleLoginButton}
+                email={this.state.email}
+                password={this.state.password}
+              />
+              {this.state.isInvalid ? (
+                <Alert message="Invalid email or password!" />
+              ) : (
+                  `Welcome!`
+                )}
+            </div>
+          )}
       </div>
     );
   }
