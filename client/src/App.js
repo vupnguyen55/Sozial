@@ -20,9 +20,13 @@ class App extends Component {
     isInvalid: false,
     isSearch: false,
     postsList: [],
+<<<<<<< HEAD
     regEmail: "",
     regPss: "",
 
+=======
+    idList: [],
+>>>>>>> da5d6aa9cde1889d60540dcb54258e5103acbf07
     friendsname: [],
     body: '',
     input: '',
@@ -68,7 +72,6 @@ class App extends Component {
   getPosts = () => {
     $.get('/api/posts')
       .then((result) => {
-        console.log('post data:', result.data);
         this.setState({ postsList: result.data.reverse() });
       })
   }
@@ -106,7 +109,7 @@ class App extends Component {
   // add friend button
   handleAddClick = (e) => {
     e.preventDefault();
-    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.target.value })
+    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.currentTarget.value })
       .then((data) => {
         alert('friend added successfully!');
       });
@@ -115,7 +118,7 @@ class App extends Component {
   clearSearch = (e) => {
     e.preventDefault();
     this.getPosts();
-    this.setState({ isSearch: false, input: ''});
+    this.setState({ isSearch: false, input: '' });
   }
 
   render() {
@@ -128,11 +131,11 @@ class App extends Component {
               value={this.state.input}
               handleChange={this.handleSearchChange}
               handleClick={this.handleSearchClick}
-              placeholder={"Search friends by name..."} 
+              placeholder={"Search friends by name..."}
               fullname={this.state.fullname}
               picture={this.state.picture}
               friendsname={this.state.friendsname}
-              handleAddClick={this.handleAddClick}/>
+              handleAddClick={this.handleAddClick} />
             <div className="container">
               <div className='row'>
                 <div className='col'>
@@ -140,11 +143,11 @@ class App extends Component {
                     fullname={this.state.fullname}
                     picture={this.state.picture}
                   />
-                  <p><a href="">Friends</a></p>
-                  <p><a href="">Groups</a></p>
-                  <p><a href="">History</a></p>
-                  <p><a href="">About</a></p>
-                  <p><a href="">Settings</a></p>
+                  <p><a href="#">Friends</a></p>
+                  <p><a href="#">Groups</a></p>
+                  <p><a href="#">History</a></p>
+                  <p><a href="#">About</a></p>
+                  <p><a href="#">Settings</a></p>
                 </div>
                 <div className='col-7'>
                   {this.state.friendsname ? (
