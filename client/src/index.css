@@ -46,6 +46,40 @@ code {
   border-width: 3px;
   border-radius: 2%;
 }
+
+
+.navbar-collapse {
+  flex-grow: unset;
+}
+
+#navPic {
+  width: 35px;
+  height:35px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+#navName {
+  margin-right: 23px;
+  font-weight: bold;
+}
+
+#mssIcon{
+  padding-right: 10px;
+}
+
+#logout {
+  color:black;
+}
+
+
+
+
+
+
+
+
+
 .homePageStyle {
   box-shadow: 1cm;
   float: right;
@@ -53,8 +87,15 @@ code {
   border-radius: 20px;
   width: 30%;
 }
+
+
+
+
+
+
+
 #signIn {
-  margin-top: 20%;
+  margin-top: 7%;
   margin-bottom: 10%;
 }
 #signInContain{
@@ -68,8 +109,73 @@ code {
   text-align: center;
 }
 
-.fa{
+#loginIcon{
   font-size: 80px;
   text-decoration: underline;
 }
 
+.clearfix {
+  overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+#homeButton {
+  padding-left: 10px;
+  padding-right: 100px;
+  font-weight: bold;
+}
+
+.homeLogo {
+  font-size: 11px;
+  padding-left: 200px;
+  padding-right:158px;
+  margin: 0;
+
+}
+
+#homeNav {
+  background-color:#3C5A99;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.2)
+}
+
+
+
+
+
+
+
+
+.friendSearch {
+  padding-top: 10px;
+  align: center;
+
+}
+
+
+
+
+
+
+
+.profile-Pic{
+  height: 50%;
+  width: 50%;
+}
+
+
+#fullname{
+  font-size: 30px;
+  font-weight: bold;
+}
