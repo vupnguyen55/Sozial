@@ -13,7 +13,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 require('./routes/api-routes.js')(app);
-require('./routes/html-routes.js')(app);
+
+if (process.env.NODE_ENV === "production") {
+  app.get('*', function (req, res) {
+    res.sendFile(__dirname + '/client/build/index.html');
+  });
+}
 
 // Starts our server.
 db.sequelize.sync().then(function () {
