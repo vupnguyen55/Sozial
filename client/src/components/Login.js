@@ -30,12 +30,12 @@ const Login = (props) => (
             <p>Register below!</p>
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-user-plus"></i></span>
-                <input type="email" className="form-control" placeholder="Enter Email/Username" onChange={props.handleCreateUser} value={props.email} aria-label="Username" aria-describedby="basic-addon1" />
+                <input type="email" className="form-control" placeholder="Enter Email/Username" onChange={props.handleLogin} value={props.regEmail} aria-label="Username" aria-describedby="basic-addon1" />
             </div>
 
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-key"></i></span>
-                <input type="password" className="form-control" placeholder="Password" onChange={props.handleCreateUser} value={props.password} aria-label="Password" aria-describedby="basic-addon1" />
+                <input type="password" className="form-control" placeholder="Password" onChange={props.handleLogin} value={props.regPss} aria-label="Password" aria-describedby="basic-addon1" />
             </div>
             <br></br>
             <button type="button" id="registerBtnStyle" className="btn btn-primary" onClick={props.handleCreateUser}>Register</button>

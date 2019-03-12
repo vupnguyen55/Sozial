@@ -20,6 +20,8 @@ class App extends Component {
     isInvalid: false,
     isSearch: false,
     postsList: [],
+    regEmail: "",
+    regPss: "",
 
     friendsname: [],
     body: '',
@@ -29,7 +31,7 @@ class App extends Component {
 
   handleCreateUser = (e) => {
     e.preventDefault();
-    $.post('/api/user', {email: e.target.email, password: e.target.password})
+    $.post('/api/user', {[e.target.name]: e.target.regEmail, [e.target.name]: e.target.regPss})
     .then((data) => {
     })
   }
