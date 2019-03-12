@@ -4,7 +4,7 @@ const Nav = (props) => (
     <div className="container-fluid carouselContainer">
         <nav className="navbar navbar-expand-lg navbar-light justify-content-between">
 
-            <div id="navCarousel" className="carousel slide" data-ride="carousel" data-interval="6000">
+            <div id="navCarousel" className="carousel slide" data-ride="carousel" data-interval="9000">
                 <ol className="carousel-indicators">
                     <li data-target="#navCarousel" data-slide-to="0" className="active"></li>
                     <li data-target="#navCarousel" data-slide-to="1"></li>
