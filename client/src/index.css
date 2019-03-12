@@ -12,3 +12,64 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.navCarousel {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+
+.navbar{
+  margin: 0;
+  padding: 0;
+}
+
+.carouselContainer {
+  float:left;
+  padding: 0;
+  margin: 0;
+  height: 86%;
+  width: 70%;
+  border-right-style: solid;
+  border-color: lightgrey;
+  border-width: 10px;
+  border-radius: 3%;
+}
+
+.d-block {
+  margin: 0;
+  padding: 0;
+  width:  800px;
+  height: 820px;
+  float: left;
+  border-right-style: solid;
+  border-color: lightgrey;
+  border-width: 3px;
+  border-radius: 2%;
+}
+.homePageStyle {
+  box-shadow: 1cm;
+  float: right;
+  padding: 50px;
+  border-radius: 20px;
+  width: 30%;
+}
+#signIn {
+  margin-top: 20%;
+  margin-bottom: 10%;
+}
+#signInContain{
+  margin-top:10%;
+}
+
+#register{
+  margin-bottom: 25%;
+}
+#signIn, #register {
+  text-align: center;
+}
+
+.fa{
+  font-size: 80px;
+  text-decoration: underline;
+}
+

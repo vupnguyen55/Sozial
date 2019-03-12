@@ -111,7 +111,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav />
         {this.state.isLogin ? (
           <div className="container">
             <div className="row">
@@ -154,17 +153,20 @@ class App extends Component {
           </div>
 
         ) : (
-          <div className="container">
+          <div>
+            <Nav />
+            <div>
             <Login
               handleLogin={this.handleLogin}
               handleLoginButton={this.handleLoginButton}
               email={this.state.email}
               password={this.state.password}
             />
+            </div>
             {this.state.isInvalid ? (
               <Alert message="Invalid email or password!" />
             ) : (
-              `Welcome!`
+              <div></div>
             )}
           </div>
         )}
