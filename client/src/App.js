@@ -139,15 +139,21 @@ class App extends Component {
                   <p><a href="">Settings</a></p>
                 </div>
                 <div className='col-7'>
-                {!this.state.isSearch ? (
-                  <Home allPosts={this.state.postsList} />
-                ) : (
-                    <Friend
-                      friendsname={this.state.friendsname}
-                      handleAddClick={this.handleAddClick}
-                      clearSearch={this.clearSearch}
+                  {this.state.friendsname ? (
+                    <div></div>
+                  ) : ('No Friends')}
+                  <div className="container">
+                    <Form
+                      btnName={"Post"}
+                      value={this.state.body}
+                      handleChange={this.handlePostChange}
+                      handleClick={this.handlePostClick}
+                      placeholder={"What's on your mind..."}
                     />
-                  )}
+                    <Home
+                      allPosts={this.state.postsList}
+                    />
+                  </div>
                 </div>
                 <div className="col" />
               </div>
