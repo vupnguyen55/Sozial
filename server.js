@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express();
 
 const PORT = process.env.PORT || 3001;
+
+const app = express();
+
 const db = require("./models");
 
 // Sets up the Express app to handle data parsing
@@ -13,7 +15,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 require('./routes/api-routes.js')(app);
-require('./routes/html-routes.js')(app);
+
+if (process.env.NODE_ENV === "production") {
+  app.get('*', function (req, res) {
+    res.sendFile(__dirname + '/client/build/index.html');
+  });
+}
 
 // Starts our server.
 db.sequelize.sync().then(function () {
