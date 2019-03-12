@@ -7,7 +7,6 @@ import './App.css';
 import Nav from './components/Nav';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
-// import Friend from './components/Friend';
 import HomeNav from './components/HomeNav'
 
 class App extends Component {
@@ -26,16 +25,44 @@ class App extends Component {
     friendsname: [],
     body: '',
     input: '',
-    picture: ''
+    picture: '',
+    regEmail: '',
+    regPss: ''
   };
 
+<<<<<<< HEAD
   handleCreateUser = (e) => {
     e.preventDefault();
     $.post('/api/user', {[e.target.name]: e.target.regEmail, [e.target.name]: e.target.regPss})
     .then((data) => {
     })
+=======
+  getPosts = () => {
+    $.get('/api/posts')
+      .then((result) => {
+        this.setState({ postsList: result.data.reverse() });
+      })
   }
 
+  handleRegister = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+>>>>>>> c65799cb9a5671c582c012748adcdabde9fd85fc
+  }
+
+  handleRegisterClick = e => {
+    e.preventDefault();
+    const newData = {
+      email: this.state.regEmail,
+      password: this.state.regPss
+    };
+    $.post('/api/user', newData)
+    .then((res) => {
+      console.log(res);
+    });
+  }
   // email password input
   handleLogin = (e) => {
     e.preventDefault();
@@ -51,7 +78,6 @@ class App extends Component {
       password: this.state.password
     };
     $.post("/api/session", loginData).then(res => {
-      // console.log('res user data: ', res.data);
       if (res.data) {
         this.setState({
           isLogin: true,
@@ -65,13 +91,7 @@ class App extends Component {
     });
   };
 
-  getPosts = () => {
-    $.get('/api/posts')
-      .then((result) => {
-        this.setState({ postsList: result.data.reverse() });
-      })
-  }
-
+  
   componentDidMount() {
     this.getPosts();
   }
@@ -177,6 +197,8 @@ class App extends Component {
                   handleCreateUser={this.handleCreateUser}
                   email={this.state.email}
                   password={this.state.password}
+                  handleRegister={this.handleRegister}
+                  handleRegisterClick={this.handleRegisterClick}
                 />
               </div>
               {this.state.isInvalid ? (

@@ -30,15 +30,25 @@ const Login = (props) => (
             <p>Register below!</p>
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-user-plus"></i></span>
-                <input type="email" className="form-control" placeholder="Enter Email/Username" onChange={props.handleLogin} value={props.regEmail} name={props.regEmail} aria-label="Username" aria-describedby="basic-addon1" />
+                <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"
+                    onChange={props.handleRegister} 
+                    name='regEmail'
+                    value={props.regEmail}
+                />
             </div>
 
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-key"></i></span>
-                <input type="password" className="form-control" placeholder="Password" onChange={props.handleLogin} value={props.regPss} name={props.regPss} aria-label="Password" aria-describedby="basic-addon1" />
+                <input type="text" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" 
+                    onChange={props.handleRegister} 
+                    name='regPss'
+                    value={props.regPss}
+                />
             </div>
             <br></br>
-            <button type="button" id="registerBtnStyle" className="btn btn-primary" onClick={props.handleCreateUser}>Register</button>
+            <button type="button" id="registerBtnStyle" className="btn btn-primary"
+                onClick={props.handleRegisterClick}
+            >Register</button>
         </div>
 
     </div>
