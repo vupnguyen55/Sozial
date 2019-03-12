@@ -6,7 +6,7 @@ const Home = (props) => (
         <div key={note.id} className="card">
             <div className="card-body">
                 <h5 className="card-subtitle mb-2 text-muted">{note.title} {note.UserId}</h5>
-                <p className="card-text">{note.body}</p>
+                 <span className="card-text">{note.body}</span>
                 <hr></hr>
                 <div className="btn-group" role="group">
                     <button className="btn btn-link btn-sm">
