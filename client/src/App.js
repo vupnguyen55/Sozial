@@ -20,13 +20,9 @@ class App extends Component {
     isInvalid: false,
     isSearch: false,
     postsList: [],
-<<<<<<< HEAD
     regEmail: "",
     regPss: "",
-
-=======
     idList: [],
->>>>>>> da5d6aa9cde1889d60540dcb54258e5103acbf07
     friendsname: [],
     body: '',
     input: '',
