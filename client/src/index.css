@@ -12,3 +12,174 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.navCarousel {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+}
+
+.navbar{
+  margin: 0;
+  padding: 0;
+}
+
+.carouselContainer {
+  float:left;
+  padding: 0;
+  margin: 0;
+  height: 86%;
+  width: 70%;
+  border-right-style: solid;
+  border-color: lightgrey;
+  border-width: 10px;
+  border-radius: 3%;
+}
+
+.d-block {
+  margin: 0;
+  padding: 0;
+  width:  800px;
+  height: 820px;
+  float: left;
+  border-right-style: solid;
+  border-color: lightgrey;
+  border-width: 3px;
+  border-radius: 2%;
+}
+
+
+.navbar-collapse {
+  flex-grow: unset;
+}
+
+#navPic {
+  width: 35px;
+  height:35px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+#navName {
+  margin-right: 23px;
+  font-weight: bold;
+}
+
+#mssIcon{
+  padding-right: 10px;
+}
+
+#logout {
+  color:black;
+}
+
+
+
+
+
+
+
+
+
+.homePageStyle {
+  box-shadow: 1cm;
+  float: right;
+  padding: 50px;
+  border-radius: 20px;
+  width: 30%;
+}
+
+
+
+
+
+
+
+#signIn {
+  margin-top: 7%;
+  margin-bottom: 10%;
+}
+#signInContain{
+  margin-top:10%;
+}
+
+#register{
+  margin-bottom: 25%;
+}
+#signIn, #register {
+  text-align: center;
+}
+
+#loginIcon{
+  font-size: 80px;
+  text-decoration: underline;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+#homeButton {
+  padding-left: 10px;
+  padding-right: 100px;
+  font-weight: bold;
+}
+
+.homeLogo {
+  font-size: 11px;
+  padding-left: 200px;
+  padding-right:158px;
+  margin: 0;
+
+}
+
+#homeNav {
+  background-color:#3C5A99;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.2)
+}
+
+
+
+
+
+
+
+
+.friendSearch {
+  padding-top: 10px;
+  align: center;
+
+}
+
+.addFriend{
+  float:right;
+}
+
+
+
+
+
+
+
+.profile-Pic{
+  height: 50%;
+  width: 50%;
+}
+
+
+#fullname{
+  font-size: 30px;
+  font-weight: bold;
+}

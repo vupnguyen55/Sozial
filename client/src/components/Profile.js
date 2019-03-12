@@ -2,9 +2,9 @@ import React from "react";
 
 const Profile = props => (
   <div>
-    <img className="profile-pic" src={props.picture} alt="" />
+    <img id="profilePic" className="profile-pic" src={props.picture} alt="" />
 
-    <p>{props.fullname}</p>
+    <p id="fullname">{props.fullname}</p>
   </div>
 );
 

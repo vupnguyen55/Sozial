@@ -8,7 +8,8 @@ import './App.css';
 import Nav from './components/Nav';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
-import Friend from './components/Friend';
+// import Friend from './components/Friend';
+import HomeNav from './components/HomeNav'
 
 class App extends Component {
   state = {
@@ -100,74 +101,82 @@ class App extends Component {
   handleAddClick = (e) => {
     e.preventDefault();
     console.log('add button id value', e.target.value);
-    $.post('/api/friend', {user_id: this.state.userid, friend_id: e.target.value})
-    .then((data) => {
-      console.log('inside App.js then:', data);
+    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.target.value })
+      .then((data) => {
+        console.log('inside App.js then:', data);
 
-    });
+      });
   }
 
 
   render() {
     return (
       <div className="App">
-        <Nav />
         {this.state.isLogin ? (
-          <div className="container">
-            <div className="row">
-              <Form
-                btnName={"Post"}
-                value={this.state.body}
-                handleChange={this.handlePostChange}
-                handleClick={this.handlePostClick}
-                placeholder={"What's in your mind..."}
-              />
-              <Form
-                btnName={"Search"}
-                value={this.state.input}
-                handleChange={this.handleSearchChange}
-                handleClick={this.handleSearchClick}
-                placeholder={"Search friends by name..."}
-              />
-            </div>
-            <div className='row'>
-              <div className='col'>
-                <Profile 
-                  fullname={this.state.fullname}
-                   picture={this.state.picture}
-                    />
-              </div>
-              <div className='col-7'>
-                {this.state.friendsname ? (
-                  <Friend 
-                    friendsname={this.state.friendsname}
-                    handleAddClick={this.handleAddClick}
+          <div>
+            <HomeNav
+              btnName={"Search"}
+              value={this.state.input}
+              handleChange={this.handleSearchChange}
+              handleClick={this.handleSearchClick}
+              placeholder={"Search friends by name..."} 
+              fullname={this.state.fullname}
+              picture={this.state.picture}
+              friendsname={this.state.friendsname}
+              handleAddClick={this.handleAddClick}/>
+            <div className="container">
+              <div className='row'>
+                <div className='col'>
+                  <Profile
+                    fullname={this.state.fullname}
+                    picture={this.state.picture}
                   />
-                ) : ('No Friends')}
-               
-                <Home
-                  allPosts={this.state.postsList}
-                />
+                  <p><a href="">Friends</a></p>
+                  <p><a href="">Groups</a></p>
+                  <p><a href="">History</a></p>
+                  <p><a href="">About</a></p>
+                  <p><a href="">Settings</a></p>
+                </div>
+                <div className='col-7'>
+                  {this.state.friendsname ? (
+                    <div></div>
+                  ) : ('No Friends')}
+                  <div className="container">
+                    <Form
+                      btnName={"Post"}
+                      value={this.state.body}
+                      handleChange={this.handlePostChange}
+                      handleClick={this.handlePostClick}
+                      placeholder={"What's on your mind..."}
+                    />
+                    <Home
+                      allPosts={this.state.postsList}
+                    />
+                  </div>
+                </div>
+                <div className="col" />
               </div>
-              <div className="col" />
             </div>
           </div>
 
         ) : (
-          <div className="container">
-            <Login
-              handleLogin={this.handleLogin}
-              handleLoginButton={this.handleLoginButton}
-              email={this.state.email}
-              password={this.state.password}
-            />
-            {this.state.isInvalid ? (
-              <Alert message="Invalid email or password!" />
-            ) : (
-              `Welcome!`
-            )}
-          </div>
-        )}
+            <div>
+              <Nav />
+              <div>
+                <Login
+                  handleLogin={this.handleLogin}
+                  handleLoginButton={this.handleLoginButton}
+                  email={this.state.email}
+                  password={this.state.password}
+                />
+              </div>
+              {this.state.isInvalid ? (
+                <Alert message="Invalid email or password!" />
+              ) : (
+                  <div></div>
+                )}
+            </div>
+          )}
       </div>
     );
   }
