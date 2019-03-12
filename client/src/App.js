@@ -97,7 +97,7 @@ class App extends Component {
   // add friend button
   handleAddClick = (e) => {
     e.preventDefault();
-    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.target.value })
+    $.post('/api/friend', { user_id: this.state.userid, friend_id: e.currentTarget.value })
       .then((data) => {
         alert('friend added successfully!');
       });
