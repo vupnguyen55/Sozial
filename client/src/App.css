@@ -47,7 +47,7 @@ body {
 
 .navbar-brand.homeLogo.text-info{
   color: black !important;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .btn.btn-link.btn-sm{
@@ -60,4 +60,16 @@ body {
 
 .text-info{
   color:darkgray !important;
+}
+
+#register{
+  margin-top: 90px;
+}
+
+#signIn{
+  margin-top: 130px;
+}
+
+#logo{
+  margin-bottom: 30%;
 }
