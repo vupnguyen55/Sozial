@@ -162,7 +162,7 @@ module.exports = function (app) {
     console.log('req body',req.body);
     db.Friend.create(req.body)
       .then(function (data) {
-        // console.log('inside api post, create friend successful:',data);
+        console.log('inside api post, create friend successful:',data);
         res.json(data);
       })
       .catch(function (err) {
