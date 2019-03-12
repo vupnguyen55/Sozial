@@ -37,13 +37,11 @@ const HomeNav = (props) => (
             </div>
         </nav>
 
-        {/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button> */}
-
         <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Who would you like to connect with?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -52,7 +50,7 @@ const HomeNav = (props) => (
                         <div>{props.friendsname.map((x) => (
                             <div key={x.id}>
                                 <p>{x.full_name} &nbsp;&nbsp;
-                                    <button className='btn btn-outline-primary' value={x.id} onClick={props.handleAddClick}>Add Friend</button></p>
+                                    <button className="addFriend btn btn-primary" value={x.id} onClick={props.handleAddClick}><i class="fas fa-user-plus"></i></button></p>
                             </div>
                         ))}
                         </div>

@@ -8,7 +8,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
-import Friend from './components/Friend';
+// import Friend from './components/Friend';
 import HomeNav from './components/HomeNav'
 
 class App extends Component {
