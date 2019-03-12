@@ -53,7 +53,11 @@ module.exports = function (app) {
   // called by getPosts
   app.get('/api/posts', function (req, res) {
     db.Post.findAll({
-      // order: ['updatedAt', 'DESC']
+      // order: ['updatedAt', 'DESC'],
+      include: [{
+        model: db.User,
+        attributes: { exclude: ["password"] }
+      }]
     })
       .then(function (data) {
         res.json(data);
