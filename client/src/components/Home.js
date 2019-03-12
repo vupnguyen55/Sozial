@@ -1,20 +1,26 @@
 import React from 'react';
 
+const styles = {
+    card: {
+        marginBottom: 20
+    }
+} 
+
 const Home = (props) => (
     <div>{props.allPosts.map((note) => (
     
-        <div key={note.id} className="card">
+        <div key={note.id} className="card" style={styles.card}>
             <div className="card-body">
                 <h5 className="card-subtitle mb-2 text-muted">{note.title} {note.User.full_name}</h5>
                 <p className="card-text">{note.body}</p>
                 <hr></hr>
                 <div className="btn-group" role="group">
                     <button className="btn btn-link btn-sm">
-                    <i className="fa fa-thumbs-up" aria-hidden="true"> Like</i></button>
+                    <i aria-hidden="true"> Like</i></button>
                     <button className="btn btn-link btn-sm">
-                    <i className="fa fa-comments" aria-hidden="true"> Comment</i></button>
+                    <i aria-hidden="true"> Comment</i></button>
                     <button className="btn btn-link btn-sm">
-                    <i className="fa fa-share" aria-hidden="true"> Share</i></button>
+                    <i aria-hidden="true"> Share</i></button>
                 </div>
             </div>
             <div className="card-footer text-muted">

@@ -179,7 +179,7 @@ class App extends Component {
 
         ) : (
             <div>
-              <Nav />
+                <Nav />
               <div>
                 <Login
                   handleLogin={this.handleLogin}

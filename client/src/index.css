@@ -118,14 +118,6 @@ code {
   overflow: auto;
 }
 
-
-
-
-
-
-
-
-
 #homeButton {
   padding-left: 10px;
   padding-right: 100px;
@@ -147,13 +139,9 @@ code {
 }
 
 .card{
-  background:rgba(255,255,255,0.2)
+  background:rgba(255,255,255,0.2);
+  
 }
-
-
-
-
-
 
 
 
@@ -166,12 +154,6 @@ code {
 .addFriend{
   float:right;
 }
-
-
-
-
-
-
 
 .profile-Pic{
   height: 50%;
@@ -190,4 +172,8 @@ code {
 
 .text-info{
   color: darkgray;
+}
+
+.navbar-brand.homeLogo.text-info{
+  color: black;
 }

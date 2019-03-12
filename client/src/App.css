@@ -44,3 +44,20 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.navbar-brand.homeLogo.text-info{
+  color: black !important;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.btn.btn-link.btn-sm{
+  color: white;
+}
+
+.btn-group{
+  justify-content: center !important; 
+}
+
+.text-info{
+  color:darkgray !important;
+}

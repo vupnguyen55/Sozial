@@ -5,8 +5,8 @@ const HomeNav = (props) => (
     <div>
         <nav id="homeNav" className="navbar navbar-expand-lg navbar-light">
             <a className="navbar-brand" href="#">
-                <h3 className="navbar-brand homeLogo text-info">
-                    <i id="homeIcon" className="fa fa-usd fa-3x" aria-hidden="true"></i>ozial
+                <h3 style={{fontSize: 50, color: 'black'}}className="navbar-brand homeLogo text-info">
+                    sozial
                 </h3></a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@ const HomeNav = (props) => (
                         value={props.value}
                         onChange={props.handleChange} />
                     <div className="input-group-append">
-                        <button className="btn btn-primary" type="button" data-toggle="modal" data-target="#friendModal"
+                        <button className="btn btn-secondary" type="button" data-toggle="modal" data-target="#friendModal"
                             onClick={props.handleClick} >{props.btnName}
                         </button>
                     </div>
@@ -50,14 +50,14 @@ const HomeNav = (props) => (
                         <div>{props.friendsname.map((x) => (
                             <div key={x.id}>
                                 <p>{x.full_name} &nbsp;&nbsp;
-                                    <button className="addFriend btn btn-primary" value={x.id} onClick={props.handleAddClick}><i className="fas fa-user-plus"></i></button></p>
+                                    <button className="addFriend btn btn-secondary" value={x.id} onClick={props.handleAddClick}><i className="fas fa-user-plus"></i></button></p>
                             </div>
                         ))}
                         </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        {/* <button type="button" className="btn btn-primary"></button> */}
+                        {/* <button type="button" className="btn btn-secondary"></button> */}
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const Form = (props) => (
                 value={props.value}
                 onChange={props.handleChange} />
             <div className="input-group-append">
-                <button className="btn btn-primary" type="button"
+                <button className="btn btn-secondary" type="button"
                     onClick={props.handleClick} >{props.btnName}
                 </button>
             </div>
