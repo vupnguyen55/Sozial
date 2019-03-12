@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import * as $ from 'axios';
 import Login from './components/Login';
@@ -8,7 +7,8 @@ import './App.css';
 import Nav from './components/Nav';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
-import Friend from './components/Friend';
+// import Friend from './components/Friend';
+import HomeNav from './components/HomeNav'
 
 class App extends Component {
   state = {
@@ -113,33 +113,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav />
         {this.state.isLogin ? (
-          <div className="container">
-            <div className="row">
-              <Form
-                btnName={"Post"}
-                value={this.state.body}
-                handleChange={this.handlePostChange}
-                handleClick={this.handlePostClick}
-                placeholder={"What's in your mind..."}
-              />
-              <Form
-                btnName={"Search"}
-                value={this.state.input}
-                handleChange={this.handleSearchChange}
-                handleClick={this.handleSearchClick}
-                placeholder={"Search friends by name..."}
-              />
-            </div>
-            <div className='row'>
-              <div className='col'>
-                <Profile
-                  fullname={this.state.fullname}
-                  picture={this.state.picture}
-                />
-              </div>
-              <div className='col-7'>
+          <div>
+            <HomeNav
+              btnName={"Search"}
+              value={this.state.input}
+              handleChange={this.handleSearchChange}
+              handleClick={this.handleSearchClick}
+              placeholder={"Search friends by name..."} 
+              fullname={this.state.fullname}
+              picture={this.state.picture}
+              friendsname={this.state.friendsname}
+              handleAddClick={this.handleAddClick}/>
+            <div className="container">
+              <div className='row'>
+                <div className='col'>
+                  <Profile
+                    fullname={this.state.fullname}
+                    picture={this.state.picture}
+                  />
+                  <p><a href="">Friends</a></p>
+                  <p><a href="">Groups</a></p>
+                  <p><a href="">History</a></p>
+                  <p><a href="">About</a></p>
+                  <p><a href="">Settings</a></p>
+                </div>
+                <div className='col-7'>
                 {!this.state.isSearch ? (
                   <Home allPosts={this.state.postsList} />
                 ) : (
@@ -149,23 +148,27 @@ class App extends Component {
                       clearSearch={this.clearSearch}
                     />
                   )}
+                </div>
+                <div className="col" />
               </div>
-              <div className="col" />
             </div>
           </div>
 
         ) : (
-            <div className="container">
-              <Login
-                handleLogin={this.handleLogin}
-                handleLoginButton={this.handleLoginButton}
-                email={this.state.email}
-                password={this.state.password}
-              />
+            <div>
+              <Nav />
+              <div>
+                <Login
+                  handleLogin={this.handleLogin}
+                  handleLoginButton={this.handleLoginButton}
+                  email={this.state.email}
+                  password={this.state.password}
+                />
+              </div>
               {this.state.isInvalid ? (
                 <Alert message="Invalid email or password!" />
               ) : (
-                  `Welcome!`
+                  <div></div>
                 )}
             </div>
           )}
