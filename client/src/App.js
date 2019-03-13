@@ -122,6 +122,11 @@ class App extends Component {
         alert('friend added successfully!');
       });
   }
+
+  handleUpdate = (e) => {
+    e.preventDefault();
+  }
+
   // clear button
   clearSearch = (e) => {
     e.preventDefault();
