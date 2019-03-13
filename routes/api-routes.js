@@ -49,7 +49,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
-  // called by getPosts
+  // NO LONGER called by getPosts
   app.get('/api/posts', function (req, res) {
     db.Post.findAll({
       // order: ['updatedAt', 'DESC'],
@@ -83,23 +83,25 @@ module.exports = function (app) {
       });
   });
 
-  // getting all friends posts for one user
+  // called by getPosts - getting all friends posts for one user
   app.get('/api/allposts/:ids', function (req, res) {
     db.Post.findAll({
       where: {
         UserId: req.params.ids.split(",")
       },
-      order: ['updatedAt', 'DESC'
-      ]
-    })
-      .then(function (data) {
+      include: [{
+        model: db.User,
+        attributes: { exclude: ["password"] }
+      }]
+      // order:[ ['updatedAt', 'DESC']]
+    }).then(function (data) {
         res.json(data);
       })
       .catch(function (err) {
         res.json(err);
       });
   });
-  // get all friend ids for one user
+  // called by getPosts - get all friend ids for one user
   app.get('/api/friendship/:id', function (req, res) {
     db.Friend.findAll({
       where: {
@@ -113,7 +115,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
-  // get all user ids for one friend
+  // called by getPosts - get all user ids for one friend
   app.get('/api/friends/:id', function (req, res) {
     db.Friend.findAll({
       where: {
