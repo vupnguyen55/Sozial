@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "mysql2019",
+      "password": "Gtbootcamp19",
       "database": "sozial_db",
       "host": "localhost",
       "port": 3306,

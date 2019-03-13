@@ -153,6 +153,17 @@ module.exports = function (app) {
       });
   });
 
+  app.put('/api/users/:id', function(req, res){
+    db.User.updateOne({_id: req.params.id},
+      req.body, {new:true})
+      .then(function(data){
+        res.json(data);
+      })
+      .catch(function(err){
+        res.json(err);
+      })
+  })
+
   /*
   
     app.post('/api/note', function (req, res) {

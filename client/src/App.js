@@ -25,7 +25,9 @@ class App extends Component {
     input: '',
     picture: '',
     regEmail: '',
-    regPss: ''
+    regPss: '',
+    regFullName: '',
+    regImg:''
   };
 
   handleRegister = e => {
@@ -134,6 +136,27 @@ class App extends Component {
         this.getPosts();
       });
   }
+
+  handleUpdate = (e) => {
+    e.preventDefault();
+    const newData = {
+      _id: this.state.userid,
+      email: this.state.regEmail,
+      password: this.state.regPss,
+      full_name: this.state.regFullName,
+      picture: this.state.regImg,
+    };
+    $.put('/api/users/:id', {_id: this.state.userid}, newData)
+    .then((data) => {
+      this.setState({
+        regEmail: '',
+        regPss: '',
+        regFullName: '',
+        regImg: '',
+      })
+    })
+  }
+
   // clear button
   clearSearch = (e) => {
     e.preventDefault();
@@ -162,12 +185,9 @@ class App extends Component {
                   <Profile
                     fullname={this.state.fullname}
                     picture={this.state.picture}
+                    handleUpdate={this.handleUpdate}
+                    handleRegister={this.handleRegister}
                   />
-                  <p><button className='btn btn-link'>Friends</button></p>
-                  <p><button className='btn btn-link'>Groups</button></p>
-                  <p><button className='btn btn-link'>History</button></p>
-                  <p><button className='btn btn-link'>About</button></p>
-                  <p><button className='btn btn-link'>Settings</button></p>
                 </div>
                 <div className='col-7'>
                   {this.state.friendsname ? (
