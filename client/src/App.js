@@ -19,8 +19,6 @@ class App extends Component {
     isInvalid: false,
     isSearch: false,
     postsList: [],
-    regEmail: "",
-    regPss: "",
     idList: [],
     friendsname: [],
     body: '',
@@ -52,14 +50,14 @@ class App extends Component {
     });
   }
   // email password input
-  handleLogin = (e) => {
+  handleLogin = e => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
   };
   // login button
-  handleLoginButton = (e) => {
+  handleLoginButton = e => {
     e.preventDefault();
     const loginData = {
       email: this.state.email,
@@ -102,11 +100,11 @@ class App extends Component {
   }
 
   // post input
-  handlePostChange = (e) => {
+  handlePostChange = e => {
     this.setState({ body: e.target.value });
   };
   // post button
-  handlePostClick = (e) => {
+  handlePostClick = e => {
     e.preventDefault();
     $.post("/api/post", {
       UserId: this.state.userid,
@@ -117,11 +115,11 @@ class App extends Component {
   };
 
   // search input
-  handleSearchChange = (e) => {
+  handleSearchChange = e => {
     this.setState({ input: e.target.value });
   };
   // search button
-  handleSearchClick = (e) => {
+  handleSearchClick = e => {
     e.preventDefault();
     $.get('/api/search/' + this.state.input)
       .then((res) => {
@@ -136,11 +134,6 @@ class App extends Component {
         this.getPosts();
       });
   }
-
-  handleUpdate = (e) => {
-    e.preventDefault();
-  }
-
   // clear button
   clearSearch = (e) => {
     e.preventDefault();
@@ -205,7 +198,6 @@ class App extends Component {
                 <Login
                   handleLogin={this.handleLogin}
                   handleLoginButton={this.handleLoginButton}
-                  handleCreateUser={this.handleCreateUser}
                   email={this.state.email}
                   password={this.state.password}
                   handleRegister={this.handleRegister}
