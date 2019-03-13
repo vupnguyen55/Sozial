@@ -131,7 +131,7 @@ class App extends Component {
     e.preventDefault();
     $.post('/api/friend', { user_id: this.state.userid, friend_id: e.currentTarget.value })
       .then((data) => {
-        alert('friend added successfully!');
+        this.getPosts();
       });
   }
   // clear button
