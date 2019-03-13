@@ -4,10 +4,10 @@ const HomeNav = (props) => (
 
     <div>
         <nav id="homeNav" className="navbar navbar-expand-lg navbar-light">
-            <a className="navbar-brand" href="#">
+            <button className="navbar-brand btn btn-link">
                 <h3 className="navbar-brand homeLogo text-info">
                     <i id="homeIcon" className="fa fa-usd fa-3x" aria-hidden="true"></i>ozial
-                </h3></a>
+                </h3></button>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -31,7 +31,7 @@ const HomeNav = (props) => (
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav">
                     <li className="nav-item active">
-                        <a id="homeButton" className="nav-link" href="#"><span id="navName">{props.fullname}</span> <i className="fas fa-users"></i> <i className="fas fa-bell-slash"></i> <i id="mssIcon" className="fas fa-comments"></i><a id="logout" href=""> Logout</a><span className="sr-only">(current)</span></a>
+                        <button id="homeButton" className="nav-link btn btn-link"><span id="navName">{props.fullname}</span> <i className="fas fa-users"></i> <i className="fas fa-bell-slash"></i> <i id="mssIcon" className="fas fa-comments"></i><a id="logout" href=''> Logout</a><span className="sr-only">(current)</span></button>
                     </li>
                 </ul>
             </div>

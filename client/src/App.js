@@ -28,13 +28,6 @@ class App extends Component {
     regPss: ''
   };
 
-  getPosts = () => {
-    $.get('/api/posts')
-      .then((result) => {
-        this.setState({ postsList: result.data.reverse() });
-      })
-  }
-
   handleRegister = e => {
     e.preventDefault();
     this.setState({
@@ -50,7 +43,10 @@ class App extends Component {
     };
     $.post('/api/user', newData)
     .then((res) => {
-      console.log(res);
+      $.post('/api/friend', { user_id: res.data.id, friend_id: 1 })
+      .then((data) => {
+        this.setState({ regEmail: '', regPss: ''});
+      });
     });
   }
   // email password input
@@ -75,16 +71,34 @@ class App extends Component {
           fullname: res.data.full_name,
           picture: res.data.picture
         });
+        this.getPosts();
       } else {
         this.setState({ isInvalid: true });
       }
     });
   };
 
-  
-  componentDidMount() {
-    this.getPosts();
+  getPosts = () => {
+    const loginId = this.state.userid;
+    $.get('/api/friendship/' + loginId)
+    .then((res) => {
+      let idArray = [loginId];
+      for (let i in res.data) {
+        idArray.push(res.data[i].friend_id);
+      }
+      $.get('/api/friends/' + loginId)
+      .then((res2) => {
+        for (let i in res2.data) {
+          idArray.push(res2.data[i].user_id);
+        }
+        $.get('/api/allposts/'+ idArray)
+        .then((result) => {
+          this.setState({ postsList: result.data.reverse(), body: '' });
+        });
+      })
+    });
   }
+
   // post input
   handlePostChange = e => {
     this.setState({ body: e.target.value });
@@ -149,11 +163,11 @@ class App extends Component {
                     fullname={this.state.fullname}
                     picture={this.state.picture}
                   />
-                  <p><a href="#">Friends</a></p>
-                  <p><a href="#">Groups</a></p>
-                  <p><a href="#">History</a></p>
-                  <p><a href="#">About</a></p>
-                  <p><a href="#">Settings</a></p>
+                  <p><button className='btn btn-link'>Friends</button></p>
+                  <p><button className='btn btn-link'>Groups</button></p>
+                  <p><button className='btn btn-link'>History</button></p>
+                  <p><button className='btn btn-link'>About</button></p>
+                  <p><button className='btn btn-link'>Settings</button></p>
                 </div>
                 <div className='col-7'>
                   {this.state.friendsname ? (
