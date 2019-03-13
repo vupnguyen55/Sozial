@@ -17,7 +17,7 @@ const Profile = props => (
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Settings</h5>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -26,7 +26,7 @@ const Profile = props => (
 
       <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-user-plus"></i></span>
-                <input type="text" className="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1"
+                <input type="text" className="form-control" placeholder="Enter Full Name" aria-label="Username" aria-describedby="basic-addon1"
                     onChange={props.handleRegister} 
                     name='regFullName'
                     value={props.regFullName}
@@ -35,7 +35,7 @@ const Profile = props => (
 
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-key"></i></span>
-                <input type="text" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" 
+                <input type="text" className="form-control" placeholder="Update Password" aria-label="Password" aria-describedby="basic-addon1" 
                     onChange={props.handleRegister} 
                     name='regPss'
                     value={props.regPss}
@@ -44,7 +44,7 @@ const Profile = props => (
 
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
-                <input type="text" className="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1"
+                <input type="text" className="form-control" placeholder="Update Email" aria-label="Username" aria-describedby="basic-addon1"
                     onChange={props.handleRegister} 
                     name='regEmail'
                     value={props.regEmail}
@@ -53,7 +53,7 @@ const Profile = props => (
 
             <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i class="fas fa-camera"></i></span>
-                <input type="text" className="form-control" placeholder="Picture" aria-label="Password" aria-describedby="basic-addon1" 
+                <input type="text" className="form-control" placeholder="Upload Picture" aria-label="Password" aria-describedby="basic-addon1" 
                     onChange={props.handleRegister} 
                     name='regPicture'
                     value={props.regImg}
