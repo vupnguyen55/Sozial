@@ -25,9 +25,9 @@ class App extends Component {
     input: '',
     picture: '',
     regEmail: '',
-    regPss: '',
-    regFullName: '',
-    regImg:''
+    regPss: ''
+    // regFullName: '',
+    // regImg: ''
   };
 
   handleRegister = e => {
@@ -41,15 +41,17 @@ class App extends Component {
     e.preventDefault();
     const newData = {
       email: this.state.regEmail,
-      password: this.state.regPss
+      password: this.state.regPss,
+      full_name: '',
+      picture: ''
     };
     $.post('/api/user', newData)
-    .then((res) => {
-      $.post('/api/friend', { user_id: res.data.id, friend_id: 1 })
-      .then((data) => {
-        this.setState({ regEmail: '', regPss: ''});
+      .then((res) => {
+        $.post('/api/friend', { user_id: res.data.id, friend_id: 1 })
+          .then((data) => {
+            this.setState({ regEmail: '', regPss: '' });
+          });
       });
-    });
   }
   // email password input
   handleLogin = e => {
@@ -83,22 +85,22 @@ class App extends Component {
   getPosts = () => {
     const loginId = this.state.userid;
     $.get('/api/friendship/' + loginId)
-    .then((res) => {
-      let idArray = [loginId];
-      for (let i in res.data) {
-        idArray.push(res.data[i].friend_id);
-      }
-      $.get('/api/friends/' + loginId)
-      .then((res2) => {
-        for (let i in res2.data) {
-          idArray.push(res2.data[i].user_id);
+      .then((res) => {
+        let idArray = [loginId];
+        for (let i in res.data) {
+          idArray.push(res.data[i].friend_id);
         }
-        $.get('/api/allposts/'+ idArray)
-        .then((result) => {
-          this.setState({ postsList: result.data.reverse(), body: '' });
-        });
-      })
-    });
+        $.get('/api/friends/' + loginId)
+          .then((res2) => {
+            for (let i in res2.data) {
+              idArray.push(res2.data[i].user_id);
+            }
+            $.get('/api/allposts/' + idArray)
+              .then((result) => {
+                this.setState({ postsList: result.data.reverse(), body: '' });
+              });
+          })
+      });
   }
 
   // post input
@@ -137,24 +139,18 @@ class App extends Component {
       });
   }
 
+  // update user profile
   handleUpdate = (e) => {
     e.preventDefault();
+    const loginId = this.state.userid;
     const newData = {
-      _id: this.state.userid,
-      email: this.state.regEmail,
-      password: this.state.regPss,
-      full_name: this.state.regFullName,
-      picture: this.state.regImg,
+      full_name: this.state.fullname,
+      picture: this.state.picture,
     };
-    $.put('/api/users/:id', {_id: this.state.userid}, newData)
-    .then((data) => {
-      this.setState({
-        regEmail: '',
-        regPss: '',
-        regFullName: '',
-        regImg: '',
-      })
-    })
+    $.put('/api/users/' + loginId, newData)
+      .then((data) => {
+        console.log('update user profile successful!');
+      });
   }
 
   // clear button

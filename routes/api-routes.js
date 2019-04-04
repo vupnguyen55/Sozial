@@ -2,6 +2,11 @@ const db = require('../models');
 const Op = db.Sequelize.Op;
 
 module.exports = function (app) {
+
+  /*==========================================
+  ================LOGIN ROUTES=================
+  ==========================================*/
+
   // called by handleLoginButton
   app.post('/api/session', function (req, res) {
     db.User.findOne({
@@ -10,13 +15,17 @@ module.exports = function (app) {
         password: req.body.password
       }
     }).then(function (data) {
-      // console.log('inside api',data.password);
+      console.log('inside api',data.password);
       res.json(data);
     })
       .catch(function (err) {
         res.json(err);
       });
   });
+
+  /*==========================================
+  ================GET ROUTES=================
+  ==========================================*/
 
   app.get('/api/users', function (req, res) {
     db.User.findAll({}).then(function (data) {
@@ -27,7 +36,7 @@ module.exports = function (app) {
       res.json(err);
     });
   });
-  
+
   app.get('/api/user/:id', function (req, res) {
     db.User.findOne({
       where: { id: req.params.id }
@@ -39,16 +48,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
-  // called by handleRegisteClick
-  app.post('/api/user', function (req, res) {
-    db.User.create(req.body)
-      .then(function (data) {
-        res.json(data);
-      })
-      .catch(function (err) {
-        res.json(err);
-      });
-  });
+  
   // NO LONGER called by getPosts
   app.get('/api/posts', function (req, res) {
     db.Post.findAll({
@@ -95,8 +95,8 @@ module.exports = function (app) {
       }]
       // order:[ ['updatedAt', 'DESC']]
     }).then(function (data) {
-        res.json(data);
-      })
+      res.json(data);
+    })
       .catch(function (err) {
         res.json(err);
       });
@@ -122,12 +122,28 @@ module.exports = function (app) {
         friend_id: req.params.id
       }
     }).then(function (data) {
+      res.json(data);
+    })
+      .catch(function (err) {
+        res.json(err);
+      });
+  });
+
+  /*==========================================
+  ================POST ROUTES=================
+  ==========================================*/
+
+  // called by handleRegisteClick
+  app.post('/api/user', function (req, res) {
+    db.User.create(req.body)
+      .then(function (data) {
         res.json(data);
       })
       .catch(function (err) {
         res.json(err);
       });
   });
+  
   // called by handlePostClick
   app.post('/api/post', function (req, res) {
     // console.log('api req body: ', req.body);
@@ -142,10 +158,10 @@ module.exports = function (app) {
   });
   // called by handleAddClick
   app.post('/api/friend', function (req, res) {
-    console.log('req body',req.body);
+    // console.log('req body', req.body);
     db.Friend.create(req.body)
       .then(function (data) {
-        console.log('inside api post, create friend successful:',data);
+        // console.log('inside api post, create friend successful:', data);
         res.json(data);
       })
       .catch(function (err) {
@@ -153,13 +169,22 @@ module.exports = function (app) {
       });
   });
 
-  app.put('/api/users/:id', function(req, res){
-    db.User.updateOne({_id: req.params.id},
-      req.body, {new:true})
-      .then(function(data){
+  /*==========================================
+  =================PUT ROUTES=================
+  ===========================================*/
+
+  // PUT route for updating user profile
+  app.put('/api/users/:id', function (req, res) {
+    db.User.update(
+      req.body,
+      {
+        where: {
+          id: req.params.id,
+        }
+      }).then(function (data) {
         res.json(data);
       })
-      .catch(function(err){
+      .catch(function (err) {
         res.json(err);
       })
   })

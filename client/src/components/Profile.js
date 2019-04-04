@@ -13,7 +13,7 @@ const Profile = props => (
     <p><button className='btn btn-link'>About</button></p>
     <p><button type="button" className='btn btn-link' data-toggle="modal" data-target="#settingModal">Settings</button></p>
 
-<div className="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id="settingModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
@@ -28,41 +28,41 @@ const Profile = props => (
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-user-plus"></i></span>
                 <input type="text" className="form-control" placeholder="Enter Full Name" aria-label="Username" aria-describedby="basic-addon1"
                     onChange={props.handleRegister} 
-                    name='regFullName'
-                    value={props.regFullName}
+                    name='fullname'
+                    value={props.fullname}
                 />
             </div>
 
-            <div className="input-group-prepend homeInput">
+            {/* <div className="input-group-prepend homeInput">
                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-key"></i></span>
-                <input type="text" className="form-control" placeholder="Update Password" aria-label="Password" aria-describedby="basic-addon1" 
+                <input type="password" className="form-control" placeholder="Update Password" aria-label="Password" aria-describedby="basic-addon1" 
                     onChange={props.handleRegister} 
-                    name='regPss'
-                    value={props.regPss}
+                    name='password'
+                    value={props.password}
                 />
-            </div>
+            </div> */}
 
-            <div className="input-group-prepend homeInput">
-                <span className="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+            {/* <div className="input-group-prepend homeInput">
+                <span className="input-group-text" id="basic-addon1"><i className="fas fa-envelope"></i></span>
                 <input type="text" className="form-control" placeholder="Update Email" aria-label="Username" aria-describedby="basic-addon1"
                     onChange={props.handleRegister} 
-                    name='regEmail'
-                    value={props.regEmail}
+                    name='email'
+                    value={props.email}
                 />
-            </div>
+            </div> */}
 
             <div className="input-group-prepend homeInput">
-                <span className="input-group-text" id="basic-addon1"><i class="fas fa-camera"></i></span>
+                <span className="input-group-text" id="basic-addon1"><i className="fas fa-camera"></i></span>
                 <input type="text" className="form-control" placeholder="Upload Picture" aria-label="Password" aria-describedby="basic-addon1" 
                     onChange={props.handleRegister} 
-                    name='regPicture'
-                    value={props.regImg}
+                    name='picture'
+                    value={props.picture}
                 />
             </div>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary" onClick={props.handleUpdate}>Save changes</button>
+        <button type="button" className="btn btn-primary" onClick={props.handleUpdate} data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
